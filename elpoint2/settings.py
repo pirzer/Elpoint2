@@ -29,9 +29,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-vs73ykqqo&825ab#3$)4lmzdauoh1uug=e%4qw-vtb(!^p_2tf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['elpoint2.herokuapp.com', 'localhost']
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 
 # Application definition
@@ -61,7 +63,7 @@ ROOT_URLCONF = 'elpoint2.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
