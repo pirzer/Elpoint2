@@ -75,6 +75,39 @@ class PostDetail(View):
         )
 
 
+class PostLike(View):
+    """
+    Allows user to like/unlike Posts
+    """
+    def post(self, request, slug):
+        post = get_object_or_404(Post, slug=slug)
+
+        if post.likes.filter(id=request.user.id).exists():
+            post.likes.remove(request.user)
+        else:
+            post.likes.add(request.user)
+
+        return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+
+
+class CreatePost(CreateView):
+    """
+    Allows authenticated users to add
+    and save posts
+    """
+    model = Post
+    form_class = PostForm
+    template_name = 'create_haiku.html'
+    success_url = reverse_lazy('home')
+
+    # Source: https://stackoverflow.com/questions/67366138/django-display-message-after-creating-a-post # noqa
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        msg = "Your post was submitted successfully"
+        messages.add_message(self.request, messages.SUCCESS, msg)
+        return super(CreateView, self).form_valid(form)
+
+
 class CreatePost(CreateView):
     """
     Allows authenticated users to add
@@ -95,7 +128,7 @@ class CreatePost(CreateView):
 
 class TagList(View):
     """
-    View to filter haikus by specific tags
+    View to filter posts by specific tags
     """
     def get(self, request, tag):
         tag_posts = Post.objects.filter(tag__tagname=self.kwargs['tag'])
