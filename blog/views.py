@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
-from .models import Post, Comment, Tag
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .forms import PostForm, CommentForm
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
+from django.contrib import messages
+from .models import Post, Comment, Tag
+from .forms import PostForm, CommentForm
 
 
 class PostList(generic.ListView):
@@ -93,24 +95,6 @@ class PostLike(View):
 class CreatePost(CreateView):
     """
     Allows authenticated users to add
-    and save posts
-    """
-    model = Post
-    form_class = PostForm
-    template_name = 'create_haiku.html'
-    success_url = reverse_lazy('home')
-
-    # Source: https://stackoverflow.com/questions/67366138/django-display-message-after-creating-a-post # noqa
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        msg = "Your post was submitted successfully"
-        messages.add_message(self.request, messages.SUCCESS, msg)
-        return super(CreateView, self).form_valid(form)
-
-
-class CreatePost(CreateView):
-    """
-    Allows authenticated users to add
     and save Posts
     """
     model = Post
@@ -124,6 +108,40 @@ class CreatePost(CreateView):
         msg = "Your Post was submitted successfully"
         messages.add_message(self.request, messages.SUCCESS, msg)
         return super(CreateView, self).form_valid(form)
+
+
+class UpdatePost(UpdateView):
+    """
+    Allows authenticated users to update
+    already submitted posts
+    """
+    model = Post
+    form_class = PostForm
+    template_name = 'update_post.html'
+    success_url = reverse_lazy('home')
+
+    # Source: https://stackoverflow.com/a/67366233
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        msg = "Your post has been updated successfully"
+        messages.add_message(self.request, messages.SUCCESS, msg)
+        return super(UpdateView, self).form_valid(form)
+
+
+class DeletePost(DeleteView):
+    """
+    Allows authenticated users to delete
+    submitted posts
+    """
+    model = Post
+    template_name = 'delete_post.html'
+    success_url = reverse_lazy('home')
+
+    # Source: https://stackoverflow.com/a/25325228
+    def delete(self, request, *args, **kwargs):
+        msg = "Your post has been deleted"
+        messages.add_message(self.request, messages.SUCCESS, msg)
+        return super(DeleteView, self).delete(request, *args, **kwargs)
 
 
 class TagList(View):
