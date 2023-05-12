@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<h2>Hit your Story to be Posted</h2>  
+<div class="container-fluid intro-text">   
+    <p class="my-3 mx-auto">
+        Just let's get it out!!! Share your story with us and you will see
+        that you can not stop doing it. 
+    </p>
+    <p>Follow your instinct, and find out more about</p>
+    <p>yourself.</p>
+    <p>Your Post does not have restriction, well.. execept one</p>
+    <p>Make your point respecfully and keep your<em>Calm</em> if somebody
+        behave incorrectly. We, El Point team know what to do in this matter.
+        Let's shout together "Play Ball"<em>here</em>
+        El point team always with you.
+    </p>
+    
+    <!-- Post submission form -->
+    {% include 'messages.html' %}
+    <form method="POST" class="Post-form">   
+        {% csrf_token %}
+        {{ form.as_p | safe }}
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
+</div>
+
+{% endblock %}

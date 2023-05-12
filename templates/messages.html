@@ -1,0 +1,14 @@
+<!-- Source code:
+
+    https://stackoverflow.com/q/67366138
+    
+-->
+
+{% if messages %}
+  {% for msg in messages %}
+      <div class="alert alert-info alert-dismissable" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      {{msg.message}}
+      </div>
+  {% endfor %}
+{% endif %}

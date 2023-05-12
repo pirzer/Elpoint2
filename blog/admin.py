@@ -6,8 +6,10 @@ from django_summernote.admin import SummernoteModelAdmin
 @admin.register(Post)
 class PostAdmin(SummernoteModelAdmin):
 
-    list_display = ('title', 'author', 'tag', 'slug', 'status', 'created_on')
-    search_fields = ['title', 'content']
+# removing 'slug', 'status', 'created_on' from list_display
+    list_display = ('title', 'author', 'tag')
+# removing , 'content' from search_fields
+    search_fields = ['title']
     list_filter = ('status', 'created_on', 'tag')
     prepopulated_fields = {'slug': ('title',)}
     summernote_fields = ('content',)
@@ -15,9 +17,12 @@ class PostAdmin(SummernoteModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('name', 'body', 'post', 'created_on', 'approved')
-    list_filter = ('approved', 'created_on')
-    search_fields = ('name', 'email', 'body')
+# removing  'body','created_on',  from list_display
+    list_display = ('name', 'post', 'approved')
+# added  , 'post'  to  list_filter
+    list_filter = ('approved', 'created_on', 'post')
+# removing  , 'email', 'body'  from search_fields
+    search_fields = ['name']
     actions = ['approve_comments']
 
     class Meta:
