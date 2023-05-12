@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<h2>Read <br>"{{ post.title }}"</h2>
+<!-- Post content -->
+<p class="tag-label fw-bold">{{ post.tag }}</p>
+<p>by {{ post.author }}</p>
+<div class="post-content">{{ post.content | safe | linebreaks }}
+
+    <!-- Like performance -->
+    <div class="like-post">
+        {% if user.is_authenticated %}
+        <form class="like-form" action="{% url 'post_like' post.slug %}" method="post">
+            {% csrf_token %}
+            {% if liked %}
+                <button type="submit" name="post_id" value="{{ post.slug }}" class="like-btn" aria-label="like-button">
+                    <iconify-icon inline icon="emojione:cherry-blossom"></iconify-icon>
+                </button>
+            {% else %}
+                <button type="submit" name="post_id" value="{{ post.slug }}" class="like-btn">
+                    <iconify-icon inline icon="emojione-monotone:cherry-blossom"></iconify-icon>
+                </button>                
+            {% endif %}
+        </form>
+        {% else %}
+        <span>
+            <iconify-icon inline icon="emojione-monotone:cherry-blossom"></iconify-icon>
+        </span>
+        {% endif %}
+        <span class="likes-number">{{ post.number_of_likes }}</span>
+        <span class="comments-num">
+            <iconify-icon inline icon="uil:comment-image" style="color: #ff506e;" width="20"></iconify-icon>
+                {{ post.approved_comments.count }} 
+        </span>
+    </div>
+
+</div>
+
+<!-- Edit/Delete posts  -->
+{% if user.id == post.author.id %}
+    <div class="update-btn-group">
+        <a href="{% url 'update' post.slug %}" class="edit-btn" role="button">Edit</a>
+        <a href="{% url 'delete' post.slug %}" class="delete-btn" role="button">Delete</a>
+    </div>
+{% endif %}
+
+<!-- Already added comments extensions -->
+<p class="h3 my-4">See how other people continued this poem</p>
+{% if post.approved_comments.count == 0 %}
+<p>No brave has extended this post yet.</p>
+{% else %}
+    {% for comment in comments %}
+        {% if comment.approved %}
+            <div class="comment">
+                {{ comment.body | safe | linebreaks }}
+                <div class="comment-author">
+                    by {{ comment.name }}
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+    {% if comment_added %}
+        <!-- Alert to wait for comment approval -->
+        <div class="alert alert-success alert-el mt-4" role="alert">
+            Your comment is waiting for approval
+        </div>
+    {% else %}
+
+        {% if user.is_authenticated %}
+
+            <!-- Comment submission form -->
+            <p class="h3 mt-5 mb-4">Add a comment extension</p>
+            <p class="intro-text mb-4">
+                To make your opinion viral, it is a real challenge<br>
+                It might be done relying on 99% of pure sweating effort,<br> 
+                and 1% good luck or vice-versa!!!. The best thing to do is<br>
+                to see what the people love to hear, read, and feel...and there<br>
+                is only one here... Just stand up with your chess out, take sit<br>
+                back, and type as you never have done before.<br>
+                All is said at this stage, have fun and do your best!!!<br>
+            </p>
+            <form method="post" class="comment-form">
+                {{ comment_form | crispy }}
+                {% csrf_token %}
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+
+        {% endif %}
+
+    {% endif %}
+
+{% endblock %}

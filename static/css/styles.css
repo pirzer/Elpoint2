@@ -1,0 +1,399 @@
+:root {
+    --primary-color: #4757e6;
+    --p-color-opaque: rgba(64, 236, 233, 0.6);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+/* Fonts taken from https://www.fontrepo.com/- see README for individual font source */
+
+@font-face {
+    font-family: 'Bluescreens';
+    src: url(https://res.cloudinary.com/dkja2ko1g/raw/upload/v1683673017/symbols/TT-Bluescreens_b7elat.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Carango';
+    src: url(https://res.cloudinary.com/dkja2ko1g/raw/upload/v1683910768/symbols/cCarango_vlzucf.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* General styling */
+
+body {
+    background-color: #fff;
+    font-size: 1.25em;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.background-imag {
+    padding: 0 5vw;
+}
+
+.background-imag::before {
+    content: "";
+    background-image: url(https://res.cloudinary.com/dkja2ko1g/image/upload/v1683665671/symbols/world_series_champions_2_kuyriv.jpg);
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.08;
+    z-index: -1;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Bluescreens';
+    font-size: 5rem;
+    margin: .5em 0;
+}
+
+h2 {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 300;
+    margin-bottom: 1em;
+}
+
+h3 {
+    font-family: 'Carango';
+    margin-bottom: .8em;
+}
+
+p {
+    font-family: 'Quicksand', sans-serif;
+    text-align: center;
+}
+
+main {
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 3em;
+}
+
+/* Navigation styling */
+
+.navbar {
+    background-color: var(--p-color-opaque);
+    box-shadow: 0px -3px 14px 15px var(--p-color-opaque);
+}
+
+.logo {
+    margin-left: 1.5em;
+    width: 50px;
+    border-radius: 50%;
+    box-shadow: 2px 2px 10px rgb(80 80 80);
+}
+
+.logo-link:active,
+.navbar-toggler:active {
+    transform: perspective(1px) translateZ(-1px);
+    transition: ease-in-out 400ms;
+}
+
+.nav-list {
+    margin-left: 60%;
+}
+
+.nav-item {
+    margin-left: .5em;
+}
+
+.nav-item_active>a {
+    color: #000;
+}
+
+.nav-link {
+    font-family: 'Dekiru';
+    font-size: 1.4rem;
+    color: #fff;
+}
+
+.navbar-toggler {
+    margin-right: 1.5em;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px 0px var(--primary-color) inset;
+    box-shadow: 3px 3px rgb(80, 80, 80);
+    border: none;
+}
+
+/* General text styling */
+
+.intro-text {
+    margin: 0 auto;
+    max-width: 880px;
+}
+
+/* post card styling */
+
+
+.post-card {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 300;
+    border: 1px solid rgb(223, 223, 223);
+    border-radius: 15px;
+    box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.2);
+    background-image: url(https://res.cloudinary.com/dkja2ko1g/image/upload/v1683746459/symbols/icono_14_zxmang.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-color: #89f8f4;
+    max-width: 440px;
+}
+
+.post-card:hover {
+    transform: translate(0, -10px);
+    transition: ease-in-out 400ms;
+}
+
+.post-card_link {
+    text-decoration: none;
+    color: #000;
+}
+
+/* Post Detail styling */
+
+.post-content {
+    font-size: 1.5rem;
+    width: fit-content;
+    padding: 1em;
+    margin: 2rem auto;
+    border: 1px solid rgb(223, 223, 223);
+    border-radius: 5px;
+    box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+}
+
+
+/* Footer styling */
+
+footer {
+    background-color: var(--p-color-opaque);
+    box-shadow: 0px -3px 14px 15px var(--p-color-opaque);
+    margin-top: auto;
+}
+
+.social-link {
+    text-shadow: 2px 2px 10px rgb(80 80 80);
+}
+
+.social-icon {
+    color: #fff;
+    font-size: 1.7rem;
+    margin: 0 1.5em;
+}
+
+.social-link:hover {
+    transform: scale(1.1);
+    transition: ease-in-out 200ms;
+}
+
+
+/* SignUp/Login/Logout styling */
+
+.auth-form>p {
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+}
+
+.auth-form>p>input {
+    margin: 0 0 0 1em;
+}
+
+.auth-form,
+.comment-form {
+    display: block;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.auth-btn,
+.submit-btn {
+    padding: .3em .6em;
+    background-color: #fff;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px 0px var(--primary-color);
+}
+
+
+/* Post form and Comment form/content styling */
+
+textarea,
+input,
+select {
+    margin: 0 auto;
+}
+
+.comment-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-form textarea,
+.post-form textarea,
+.post-form input,
+.post-form select,
+.comment {
+    border: 1px solid rgb(223, 223, 223);
+    border-radius: 5px;
+    box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.2);
+    height: 7em;
+    width: 95vw;
+    max-width: 19em;
+    padding: 1em;
+    margin-bottom: 1em;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.post-form textarea,
+.post-form input,
+.post-form select {
+    height: auto;
+    width: 100%;
+    line-height: 1.8;
+}
+
+.note-editor {
+    width: 100% !important;
+}
+
+.comment-form label,
+.post-form label {
+    display: block;
+    visibility: hidden;
+}
+
+.submit-btn,
+.auth-btn,
+.update-btn-group {
+    width: fit-content;
+    display: block;
+    margin: 0 auto;
+}
+
+.alert-el,
+.comment {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.comment {
+    font-size: 1.4rem;
+    height: auto;
+    margin-top: 1.5em;
+    background-color: #fff;
+}
+
+.comment-author {
+    font-size: .7em;
+    font-weight: 700;
+}
+
+
+/* Like functionality styling */
+
+.like-form {
+    display: inline;
+}
+
+.like-btn {
+    border: none;
+    background-color: transparent;
+    font-size: 1.5rem;
+}
+
+.like-btn:hover {
+    transform: scale(1.1);
+    transition: ease-in-out;
+}
+
+.likes-number {
+    margin-right: 2em;
+}
+
+/* Button styling */
+
+button:hover {
+    transform: scale(1.05);
+    transition: ease-in-out 200ms;
+}
+
+.filter-btn-group {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-bottom: 1em;
+}
+
+.edit-btn,
+.delete-btn,
+.cancel-btn,
+.back-btn,
+.tag-link,
+.page-link {
+    text-decoration: none;
+    color: #000;
+    padding: .3em .6em;
+    margin: 0 .3em;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(193, 211, 255);
+}
+
+.back-btn {
+    display: block;
+    margin: 2em auto;
+    width: fit-content;
+}
+
+.delete-btn {
+    background-color: rgba(255, 0, 0, 0.4);
+}
+
+.cancel-btn {
+    background-color: rgba(14, 143, 0, .4);
+    padding: 0.35em 0.6em
+}
+
+.tag-link,
+.page-link {
+    display: block;
+    width: fit-content;
+    background-color: rgb(200, 200, 200);
+    margin-bottom: 1em;
+}
+
+.tag-link:hover {
+    color: #000;
+    transform: scale(1.1);
+    transition: ease-in-out 200ms;
+}
+
+.edit-btn:visited,
+.delete-btn:visited,
+.tag-link:visited,
+.cancel-btn {
+    color: #000;
+}

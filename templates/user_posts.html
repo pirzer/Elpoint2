@@ -1,0 +1,45 @@
+{% extends "base.html" %}post_detail
+
+{% block content %}
+
+<h2>My Posts</h2>
+
+<!-- Post listing -->
+<div class="container-fluid">
+    <div class="row d-flex justify-content-evenly">
+    {% for post in post_list %}
+        <div class="col-md-5 p-3 m-3 post-card">
+            <a href="{% url 'post_detail' post.slug %}" class="post-card_link">
+                <h3>
+                    {{ post.title }}
+                </h3>
+                <div class="d-flex justify-content-around">
+                    <div class="author">by {{ post.author }}</div>
+                    <div class="tag-label fw-bold">{{ post.tag }}</div>
+                </div>
+            </a>
+            <div class="likes-comments-numbers mt-2">
+                <span class="likes-num">{{ post.number_of_likes }}
+                    <iconify-icon inline icon="emojione:cherry-blossom"></iconify-icon>
+                </span>
+                <span class="comments-num">
+                    
+                    {{ post.approved_comments.count }} 
+                    
+                    <iconify-icon inline icon="uil:comment-image" style="color: #53ff509c;" rotate="90deg"></iconify-icon> 
+
+                    
+                </span>
+                
+            </div>
+        </div>
+    {% empty %}
+        <p>
+            Dude, no post hasn't created yet.<br>
+            However, never it is late!
+        </p>        
+    {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

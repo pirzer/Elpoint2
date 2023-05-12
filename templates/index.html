@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid intro-text">
+    <p class="mb-5">
+        Do you like baseball? Do you play or follow it? Buddy, you navigate on the right site. <br>
+        Please, feel free to post your feelings, and check others' opinions in this spontaneous 
+        dynamic by spreading your ideas, feelings, and expectations. Just 
+    {% if user.is_authenticated %}
+    Register 
+    {% else %}
+    <a href="{% url 'account_signup' %}">Sign Up</a>
+    {% endif %}
+     and you will fly like a HR.<br>
+    Once you logged in, you will follow some basic steps to be in a good shape. 
+    {% if user.is_authenticated %}
+    <a href="{% url 'create_post' %}">Create page</a>
+    {% else %}Create page
+    {% endif %} Just follow the steps, and you'll be grand<br>
+    Happy hitting!
+    </p>
+</div>
+
+<h2>Browse Posts</h2>
+
+<!-- Btn group to filter posts by tag -->
+<p>Filter posts by tagname:</p>
+<div class="container-fluid filter-btn-group">
+    <a href="{% url 'home' %}" role="button" class="tag-link">All Posts</a>
+{% for item in tag_items %}
+    <a href="{% url 'tag_list' item %}" 
+        role="button" 
+        class="tag-link">
+        {{ item }}
+    </a>
+{% endfor %}
+</div>
+
+<!-- Post listing -->
+<div class="container-fluid">
+    <div class="row d-flex justify-content-evenly">
+        {% for post in post_list %}
+        <div class="col-md-5 p-3 m-3 post-card">
+            <a href="{% url 'post_detail' post.slug %}" class="post-card_link">
+                <h3>
+                    {{ post.title }}
+                </h3>
+                <div class="d-flex justify-content-around">
+                    <div class="author">by {{ post.author }}</div>
+                    <div class="tag-label fw-bold">{{ post.tag }}</div>
+                </div>
+            </a>
+            <div class="likes-posts-numbers mt-2">
+                <span class="likes-num">{{ post.number_of_likes }}
+                    <iconify-icon inline icon="emojione:baseball"></iconify-icon>
+                </span>
+                <span class="posts-num">
+                    {{ post.approved_posts.count }} 
+                    <iconify-icon inline icon="uil:comment-image" style="color: #53ff509c;" rotate="90deg"></iconify-icon> 
+                </span>
+                
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if is_paginated %}
+    <nav aria-label="Page navigation" class="page-nav">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+            {% endif %}
+            {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+
+{% endblock %}

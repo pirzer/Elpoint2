@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<p>Read all posts tagged with</p>
+<h2>"{{ tag }}"</h2>
+
+<div class="container-fluid">
+    <div class="row d-flex justify-content-evenly">
+    {% if posts.count == 0 %}
+        <p>There are no posts tagged with "{{ tag }}" yet.<br>
+            Maybe you could change that...?
+        </p>
+    {% else %}
+        {% for post in tag_posts %}
+        <div class="col-md-5 p-3 m-3 post-card">
+            <a href="{% url 'post_detail' post.slug %}" class="post-card_link">
+                <h3>
+                    {{ post.title }}
+                </h3>
+                <div class="d-flex justify-content-around">
+                    <div class="author">by {{ post.author }}</div>
+                    <div class="tag-label fw-bold">{{ post.tag }}</div>
+                </div>
+            </a>
+            <div class="likes-comments-numbers mt-2">
+                <span class="likes-num">{{ post.number_of_likes }}
+                    <iconify-icon inline icon="emojione:cherry-blossom"></iconify-icon>
+                </span>
+                <span class="comments-num">
+                    
+                    {{ post.approved_comments.count }} 
+                    
+                    <iconify-icon inline icon="uil:comment-image" style="color: #53ff509c;" rotate="90deg"></iconify-icon>
+                    
+                </span>
+                
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+    </div>
+</div>
+<a href="{% url 'home' %}" class="back-btn">Back</a>
+
+{% endblock %}
