@@ -82,6 +82,8 @@ h3 {
 p {
     font-family: 'Quicksand', sans-serif;
     text-align: center;
+    height: fit-content;
+    word-break: break-all;
 }
 
 main {
