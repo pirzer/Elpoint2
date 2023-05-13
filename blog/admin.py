@@ -30,8 +30,8 @@ class CommentAdmin(admin.ModelAdmin):
         fields = ('body',)
 
 
-    def approve_comments(self, request, queryset):
-        queryset.update(approved=True)
+    # def approve_comments(self, request, queryset):
+    #     queryset.update(approved=True)
 
 
 @admin.register(Tag)

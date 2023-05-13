@@ -21,7 +21,7 @@ class Tag(models.Model):
 # Source: https://github.com/Code-Institute-Solutions/Django3blog/blob/master/11_messages/blog/models.py
 class Post(models.Model):
     """
-    Defines Post object
+    Defines Post object blog_posts post_entries line 29
     """
     title = models.CharField(max_length=120, unique=True)
     slug = models.SlugField(max_length=120, unique=True)
@@ -40,7 +40,7 @@ class Post(models.Model):
         Tag, on_delete=models.PROTECT, default=1, related_name="tag")
 
     class Meta:
-        ordering = ["-created_on"]
+        ordering = ['-created_on']
 
     def __str__(self):
         return self.title
@@ -73,13 +73,13 @@ class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE,
                              related_name="comments")
     name = models.CharField(max_length=80)
-    email = models.EmailField()
+    # email = models.EmailField()
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ["created_on"]
+        ordering = ['-created_on']
 
     def __str__(self):
         return f"Comment {self.body} by {self.name}"
