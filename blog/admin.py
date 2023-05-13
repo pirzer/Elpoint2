@@ -4,16 +4,22 @@ from django_summernote.admin import SummernoteModelAdmin
 
 
 @admin.register(Post)
-class PostAdmin(SummernoteModelAdmin):
+# class PostAdmin(SummernoteModelAdmin):
+class PostAdmin(admin.ModelAdmin):
+
 
 # removing 'slug', 'status', 'created_on' from list_display
     list_display = ('title', 'author', 'tag')
 # removing , 'content' from search_fields
     search_fields = ['title']
-    list_filter = ('status', 'created_on', 'tag')
+# removing , 'status',  from list_filter
+    list_filter = ('created_on', 'tag')
     prepopulated_fields = {'slug': ('title',)}
-    summernote_fields = ('content',)
+    # summernote_fields = ('content',)
 
+    class Meta:
+        model = Post
+        fields = ('content',)
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
@@ -23,7 +29,7 @@ class CommentAdmin(admin.ModelAdmin):
     list_filter = ('approved', 'created_on', 'post')
 # removing  , 'email', 'body'  from search_fields
     search_fields = ['name']
-    actions = ['approve_comments']
+    # actions = ['approve_comments']
 
     class Meta:
         model = Comment

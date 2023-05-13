@@ -29,10 +29,11 @@ class Post(models.Model):
         User, on_delete=models.CASCADE, related_name="blog_posts"
     )
     featured_image = CloudinaryField('image', default='placeholder')
-    excerpt = models.TextField(blank=True)
+    excerpt = models.TextField(blank=True, null=True)
     updated_on = models.DateTimeField(auto_now=True)
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
+    # create_on = models.DateField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(
         User, related_name='blogpost_like', blank=True)
@@ -76,11 +77,12 @@ class Comment(models.Model):
     # email = models.EmailField()
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
+    # create_on = models.DateField(auto_now_add=True)
     approved = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-created_on']
 
     def __str__(self):
-        return f"Comment {self.body} by {self.name}"
-        # return f"{self.name} made this into a comment: {self.body}"
+        # return f"Comment {self.body} by {self.name}"
+        return f"{self.name} made this into a comment: {self.body}"
