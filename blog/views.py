@@ -6,6 +6,8 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from .models import Post, Comment, Tag
 from .forms import PostForm, CommentForm
+from django.utils.text import Truncator
+
 
 
 class PostList(generic.ListView):

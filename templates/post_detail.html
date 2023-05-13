@@ -15,7 +15,7 @@
             {% csrf_token %}
             {% if liked %}
                 <button type="submit" name="post_id" value="{{ post.slug }}" class="like-btn" aria-label="like-button">
-                    <iconify-icon inline icon="emojione:cherry-blossom"></iconify-icon>
+                    <iconify-icon inline icon="emojione-v1:baseball"></iconify-icon>
                 </button>
             {% else %}
                 <button type="submit" name="post_id" value="{{ post.slug }}" class="like-btn">
@@ -25,12 +25,13 @@
         </form>
         {% else %}
         <span>
-            <iconify-icon inline icon="uil:comment-image">></iconify-icon>
+            <iconify-icon inline icon="emojione-v1:baseball"></iconify-icon>
         </span>
         {% endif %}
         <span class="likes-number">{{ post.number_of_likes }}</span>
         <span class="comments-num">
-            <iconify-icon inline icon="uil:comment-image" style="color: #53ff509c;" rotate="90deg"></iconify-icon>
+            <!-- <iconify-icon inline icon="uil:comment-image" style="color: #53ff509c;" rotate="90deg"></iconify-icon> -->
+            <iconify-icon inline icon="emojione-v1:name-badge" style="color: #e805059c;" rotate="90deg"></iconify-icon>                    
             {{ post.approved_comments.count }} 
         </span>
     </div>
@@ -46,7 +47,7 @@
 {% endif %}
 
 <!-- Already added comments extensions -->
-<p class="h3 my-4">See how other people continued this poem</p>
+<p class="h3 my-4">See how oher fan engage with this comment</p>
 {% if post.approved_comments.count == 0 %}
 <p>No brave has extended this post yet.</p>
 {% else %}
