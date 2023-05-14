@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # To change Debug from True to False before heroku deployment
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['elpoint2.herokuapp.com', 'localhost']
 

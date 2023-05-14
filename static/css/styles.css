@@ -85,6 +85,7 @@ h3 {
 /* likes colors */
 .likes-num {
     color: #e5efef;
+    font-weight: bold;
 }
 
 /* comments color */
@@ -206,9 +207,10 @@ main {
 
 .post-card_link {
     text-decoration: none;
-    color: #090909;
+    color: #f7f2f2;
     text-align: center;
     word-break: break-all;
+    font-weight: bold;
     }
 
 /* Post Detail styling */
@@ -418,6 +420,16 @@ button:hover {
     padding: 0.35em 0.6em
 }
 
+/* sign up button */
+
+button {
+width: fit-content;
+display: block;
+margin: 0 auto;
+color: #fff
+}
+
+
 .tag-link,
 .page-link {
     display: block;
@@ -436,5 +448,5 @@ button:hover {
 .delete-btn:visited,
 .tag-link:visited,
 .cancel-btn {
-    color: #f9f7f7;
+    color: #f5f6f0;
 }
