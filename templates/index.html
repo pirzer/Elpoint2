@@ -5,18 +5,18 @@
     <p class="mb-5">
         Do you like baseball? Do you play or follow it? Buddy, you navigate on the right site. <br>
         Please, feel free to post your feelings, and check others' opinions in this spontaneous 
-        dynamic by spreading your ideas, feelings, and expectations. Just 
+        dynamic website by spreading your ideas, feelings, and expectations. Just 
     {% if user.is_authenticated %}
     Register 
     {% else %}
     <a href="{% url 'account_signup' %}">Sign Up</a>
     {% endif %}
      and you will fly like a HR.<br>
-    Once you logged in, you will follow some basic steps to be in a good shape. 
+    Once you logged in, you can follow some basic steps to be in a good shape. 
     {% if user.is_authenticated %}
     <a href="{% url 'create_post' %}">Create page</a>
     {% else %}Create page
-    {% endif %} Just follow the steps, and you'll be grand<br>
+    {% endif %} Just follow the steps, and you'll be grand ready to write<br>
     Happy hitting!
     </p>
 </div>
