@@ -23,7 +23,6 @@ class PostList(generic.ListView):
         tag_items = Tag.objects.all()
         context = super(PostList, self).get_context_data(*args, **kwargs)
         context["tag_items"] = tag_items
-        context['comments'] = Comment.objects.select_related()
         return context
 
 
