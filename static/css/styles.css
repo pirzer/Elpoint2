@@ -190,12 +190,12 @@ main {
     font-weight: 300;
     border: 1px solid rgb(223, 223, 223);
     border-radius: 15px;
-    box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
     background-image: url(https://res.cloudinary.com/dkja2ko1g/image/upload/v1683746459/symbols/icono_14_zxmang.jpg);
     background-size: contain;
     background-repeat: no-repeat;
     background-position-x: right;
-    background-color: #4d4e4e;
+    background-color: #1c1e1e;
     max-width: 445px;
 }
 /* changing #89f8f4 */
@@ -205,12 +205,14 @@ main {
     transition: ease-in-out 400ms;
 }
 
+/* card word color */
 .post-card_link {
     text-decoration: none;
-    color: #f7f2f2;
+    color: #171716;
     text-align: center;
     word-break: break-all;
     font-weight: bold;
+    font-size: smaller;
     }
 
 /* Post Detail styling */
@@ -364,6 +366,7 @@ select {
     border: none;
     background-color: transparent;
     font-size: 1.5rem;
+    display: inherit;
 }
 
 .like-btn:hover {
