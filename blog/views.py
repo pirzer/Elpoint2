@@ -22,9 +22,8 @@ class PostList(generic.ListView):
     def get_context_data(self, *args, **kwargs):
         tag_items = Tag.objects.all()
         context = super(PostList, self).get_context_data(*args, **kwargs)
-        context["tag_items"] = tag_items
+        context["tag_items"] = tag_items     
         return context
-
 
 class PostDetail(View):
     def get(self, request, slug, *args, **kwargs):
