@@ -421,7 +421,8 @@ button:hover {
     margin: 0 .3em;
     border-radius: 15px; /* changed 5px to 15px */
     border: none;
-    background-color: rgb(24 24 25 / 60%);
+    background-color: rgba(24 24 25 / 60%);
+    display: inline-block;
 }
 
 .back-btn {
@@ -435,8 +436,8 @@ button:hover {
 }
 
 .cancel-btn {
-    background-color: rgba(14, 143, 0, .4);
-    padding: 0.35em 0.6em
+    background-color: rgba(242, 79, 144, 0.4);
+    padding: 1.3em 1.3em;
 }
 
 /* sign up button */
