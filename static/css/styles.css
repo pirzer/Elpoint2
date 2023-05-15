@@ -201,6 +201,54 @@ main {
 }
 /* changing #89f8f4 */
 
+/* 403 you dont have permission to access */
+.post-card-403fail {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 300;
+    border: 1px solid rgb(223, 223, 223);
+    border-radius: 15px;
+    box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.2);
+    background-image: url(https://res.cloudinary.com/dkja2ko1g/image/upload/v1684192462/symbols/403_wt7xeo.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-color: #f0eded;
+    max-width: 445px;
+}
+
+/* 404 page not found */
+.post-card-404fail {
+font-family: 'Quicksand', sans-serif;
+font-weight: 300;
+border: 1px solid rgb(223, 223, 223);
+border-radius: 15px;
+box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.2);
+background-image: url(https://res.cloudinary.com/dkja2ko1g/image/upload/v1684191768/symbols/404_cbgeql.jpg);
+background-size: contain;
+background-repeat: no-repeat;
+background-position-x: right;
+background-color: #f0eded;
+max-width: 445px;
+}
+
+/* 500 The server is not responding */
+.post-card-500fail {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 300;
+    border: 1px solid rgb(223, 223, 223);
+    border-radius: 15px;
+    box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.2);
+    background-image: url(https://res.cloudinary.com/dkja2ko1g/image/upload/v1684192229/symbols/500_lwmwg0.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-color: #f0eded;
+    max-width: 445px;
+}
+
+
+
+
 .post-card:hover {
     transform: translate(0, -10px);
     transition: ease-in-out 400ms;
