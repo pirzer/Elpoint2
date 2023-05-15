@@ -214,6 +214,7 @@ main {
     background-position-x: right;
     background-color: #f0eded;
     max-width: 445px;
+    color: #eff30a;
 }
 
 /* 404 page not found */
@@ -229,6 +230,7 @@ background-repeat: no-repeat;
 background-position-x: right;
 background-color: #f0eded;
 max-width: 445px;
+color: #eff30a;
 }
 
 /* 500 The server is not responding */
@@ -244,6 +246,7 @@ max-width: 445px;
     background-position-x: right;
     background-color: #f0eded;
     max-width: 445px;
+    color: #eff30a;
 }
 
 
