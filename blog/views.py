@@ -6,7 +6,23 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from .models import Post, Comment, Tag
 from .forms import PostForm, CommentForm
+from django.core.paginator import EmptyPage, Paginator
 from django.utils.text import Truncator
+
+
+class SafePaginator(Paginator):
+    """
+    Prevent user from manually type wrong page
+    in the adressbar other then those existing
+    """
+    def validate_number(self, number):
+        try:
+            return super(SafePaginator, self).validate_number(number)
+        except EmptyPage:
+            if number > 1:
+                return self.num_pages
+            else:
+                raise
 
 
 
@@ -17,6 +33,7 @@ class PostList(generic.ListView):
     model = Post
     queryset = Post.objects.filter(status=1).order_by("-created_on")
     template_name = "index.html"
+    paginator_class = SafePaginator
     paginate_by = 6
 
     def get_context_data(self, *args, **kwargs):
